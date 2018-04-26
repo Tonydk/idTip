@@ -53,17 +53,17 @@ hooksecurefunc(GameTooltip, "SetHyperlink", onSetHyperlink)
 
 -- Spells
 hooksecurefunc(GameTooltip, "SetUnitBuff", function(self, ...)
-    local id = select(11, UnitBuff(...))
+    local id = select(10, UnitBuff(...))
     if id then addLine(self, id, types.spell) end
 end)
 
 hooksecurefunc(GameTooltip, "SetUnitDebuff", function(self,...)
-    local id = select(11, UnitDebuff(...))
+    local id = select(10, UnitDebuff(...))
     if id then addLine(self, id, types.spell) end
 end)
 
 hooksecurefunc(GameTooltip, "SetUnitAura", function(self,...)
-    local id = select(11, UnitAura(...))
+    local id = select(10, UnitAura(...))
     if id then addLine(self, id, types.spell) end
 end)
 
@@ -73,7 +73,7 @@ hooksecurefunc("SetItemRef", function(link, ...)
 end)
 
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
-    local id = select(3, self:GetSpell())
+    local id = select(2, self:GetSpell())
     if id then addLine(self, id, types.spell) end
 end)
 
@@ -170,7 +170,11 @@ hooksecurefunc(GameTooltip, "SetCurrencyTokenByID", function(self, id)
    if id then addLine(self, id, types.currency) end
 end)
 
--- Quests
+--[[
+
+-- Quests 
+-- (FIND AN 8.0 REPLACEMENT)
+
 do
     local function questhook(self)
         if self.questID then addLine(GameTooltip, self.questID, types.quest) end
@@ -184,3 +188,4 @@ do
         end
     end)
 end
+--]]
